@@ -33,7 +33,7 @@ class OsuDownloader:
         output_path = Path(output_dir) / f"{beatmap_id}.osz"
         
         if output_path.exists():
-            print(f"圖譜 {beatmap_id} 已存在，跳過下載")
+            print(f"[{beatmap_id}] 圖譜已存在，跳過下載")
             return True
         
         for mirror in mirrors:
@@ -41,19 +41,22 @@ class OsuDownloader:
                 mirror_name = mirror.split('/')[2]
                 print(f"正在從 {mirror_name} 下載圖譜 {beatmap_id}...")
                 
+                # 增加重試次數和超時時間
                 response = self.session.get(
                     mirror, 
                     stream=True, 
-                    timeout=10
+                    timeout=30,  # 增加超時時間
+                    verify=False  # 暫時禁用 SSL 驗證
                 )
                 response.raise_for_status()
                 
                 total = int(response.headers.get('content-length', 0))
                 if total == 0:  # 檢查檔案大小
+                    print(f"從 {mirror_name} 獲取的檔案大小為 0，嘗試其他鏡像站...")
                     continue
                 
                 with open(output_path, 'wb') as f, tqdm(
-                    desc="下載進度",
+                    desc=f"[{beatmap_id}] 下載進度",
                     total=total,
                     unit='iB',
                     unit_scale=True,
@@ -68,7 +71,7 @@ class OsuDownloader:
                     print(f"圖譜 {beatmap_id} 下載完成！")
                     return True
                 else:
-                    print("檔案大小不符，重試其他鏡像站...")
+                    print(f"檔案大小不符，重試其他鏡像站...")
                     output_path.unlink(missing_ok=True)
                     continue
                 
@@ -97,8 +100,10 @@ def download_from_csv(csv_file, output_dir, start_from=None):
     
     try:
         with open(csv_path, 'r', encoding='utf-8-sig') as f:
+            # 讀取 CSV 並去除重複的圖譜 ID
             reader = list(csv.DictReader(f))
-            total_maps = len(reader)
+            unique_maps = {row['id']: row for row in reader}  # 使用字典去重
+            reader = list(unique_maps.values())
             
             # 如果指定了起始位置，從該位置開始下載
             if start_from:

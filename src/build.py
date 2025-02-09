@@ -1,5 +1,4 @@
 import PyInstaller.__main__
-import os
 from pathlib import Path
 
 def build():
