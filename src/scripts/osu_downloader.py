@@ -123,7 +123,7 @@ def download_from_csv(csv_file, output_dir, start_from=None):
                         with open(progress_file, "w") as f:
                             f.write(beatmap_id)
                     
-                    time.sleep(0.5)
+                    time.sleep(1)
                     
                 except KeyboardInterrupt:
                     print("\n\n下載已暫停！最後下載的圖譜ID：", beatmap_id)

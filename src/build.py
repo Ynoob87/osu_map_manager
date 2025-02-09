@@ -21,7 +21,6 @@ def build():
         '--add-data=src/cache;cache',  # 添加緩存目錄
         '--add-data=src/data;data',  # 添加資料目錄
         '--add-data=src/downloads;downloads'  # 添加下載目錄
-
     ]
     
     # 執行打包
