@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.spec
+
+# Project specific
+beatmaps.csv
+downloads/
+config.json
+download_progress.txt
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# OS
+.DS_Store
+Thumbs.db 
+
+#DATA
+beatmaps.csv
+downloads/
+
+#build
+.venv/
+build/
+dist/
+*.spec
