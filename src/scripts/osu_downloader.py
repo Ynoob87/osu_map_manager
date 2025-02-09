@@ -6,6 +6,7 @@ import urllib3
 import certifi
 from pathlib import Path
 from tqdm import tqdm
+from .path_manager import PathManager
 
 # 禁用不安全請求警告
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -89,12 +90,9 @@ def download_from_csv(csv_file, output_dir, start_from=None):
     """從 CSV 檔案讀取並下載圖譜"""
     downloader = OsuDownloader()
     
-    # 修改為使用 src 目錄下的路徑
-    csv_path = Path("src/data") / csv_file
-    output_dir = Path("src/downloads")
-    progress_file = Path("src/cache/download_progress.txt")
-    
-    output_dir.mkdir(parents=True, exist_ok=True)
+    csv_path = PathManager.get_data_path() / csv_file
+    output_dir = PathManager.get_downloads_path()
+    progress_file = PathManager.get_progress_file()
     
     try:
         with open(csv_path, 'r', encoding='utf-8-sig') as f:
@@ -139,14 +137,17 @@ def download_from_csv(csv_file, output_dir, start_from=None):
         print(f"處理 CSV 時發生錯誤：{e}")
 
 if __name__ == "__main__":
-    csv_file = "src/data/beatmaps.csv"
-    output_dir = "src/downloads"
+    csv_file = "beatmaps.csv"
+    output_dir = "downloads"
+    
+    # 確保所有必要的目錄都存在
+    PathManager.ensure_directories()
     
     # 檢查是否需要繼續上次的下載
     start_from = None
     if "--continue" in sys.argv:
         try:
-            with open("src/cache/download_progress.txt", "r") as f:
+            with open(PathManager.get_progress_file(), "r") as f:
                 start_from = f.read().strip()
             print(f"從圖譜 {start_from} 繼續下載")
         except FileNotFoundError:

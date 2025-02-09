@@ -7,6 +7,7 @@ from scripts.osu_finder import (
     export_to_csv
 )
 from scripts.osu_downloader import download_from_csv
+from scripts.path_manager import PathManager
 
 def show_menu():    
     """顯示主選單"""
@@ -47,15 +48,18 @@ def scan_local_beatmaps():
 
 def download_missing_beatmaps():
     """下載遺失的圖譜"""
-    csv_path = Path("src/data/beatmaps.csv")
-    if not csv_path.exists():
+    beatmaps_file = PathManager.get_beatmaps_file()
+    if not beatmaps_file.exists():
         print("\n請先執行掃描功能產生 beatmaps.csv (´;ω;｀)")
         return
     
     print("\n開始下載遺失圖譜...")
-    download_from_csv("beatmaps.csv", "downloads")
+    download_from_csv(beatmaps_file.name, PathManager.get_downloads_path())
 
 def main():
+    # 確保所有必要的目錄都存在
+    PathManager.ensure_directories()
+    
     while True:
         choice = show_menu()
         

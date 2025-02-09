@@ -3,6 +3,7 @@ import winreg
 import csv
 from pathlib import Path
 from datetime import datetime
+from .path_manager import PathManager
 
 def verify_osu_directory(path):
     """驗證資料夾是否為 osu! 安裝目錄"""
@@ -142,9 +143,7 @@ def export_to_csv(beatmap_details, output_file='beatmaps.csv'):
     if not beatmap_details:
         return False
         
-    # 修改輸出路徑
-    output_path = Path("src/data") / output_file
-    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path = PathManager.get_data_path() / output_file
     
     fieldnames = ['id', 'name', 'url', 'size_mb', 'created_time', 'modified_time']
     
