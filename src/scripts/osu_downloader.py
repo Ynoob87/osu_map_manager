@@ -26,6 +26,7 @@ class OsuDownloader:
         
         # 鏡像站列表
         mirrors = [
+            f"https://beatconnect.io/b/{beatmap_id}",
             f"https://dl.sayobot.cn/beatmaps/download/{beatmap_id}",
         ]
         
