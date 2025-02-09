@@ -53,7 +53,7 @@ def download_missing_beatmaps():
         print("\n請先執行掃描功能產生 beatmaps.csv (´;ω;｀)")
         return
     
-    print("\n開始下載遺失圖譜...")
+    print("\n開始下載已備份的圖譜...")
     download_from_csv(beatmaps_file.name, PathManager.get_downloads_path())
 
 def main():
