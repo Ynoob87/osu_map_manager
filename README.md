@@ -15,7 +15,7 @@
 
 ### 方法一：直接使用（推薦）
 
-1. 從 [Releases](https://github.com/Ynoob87/osu_map_manager/releases) 下載最新版本的 zip 檔案
+1. [下載最新版本](https://github.com/Ynoob87/osu_map_manager/releases)
 2. 解壓縮到任意資料夾
 3. 執行 `osu_map_manager.exe`
 
