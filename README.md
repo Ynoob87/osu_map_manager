@@ -103,10 +103,6 @@ src/
 - 建議定期備份 beatmaps.csv
 - 如果使用打包版本，可能會被防毒軟體誤判，這是正常現象
 
-## 貢獻指南 🤝
-
-歡迎提交 Pull Request 或開 Issue 來改善這個專案！
-
 ## 授權條款 📜
 
 本專案採用 MIT 授權條款 - 詳見 [LICENSE](LICENSE) 檔案
@@ -114,5 +110,14 @@ src/
 ## 👤 作者
 
 - Email: hhgg12661@gmail.com
-- GitHub: (https://github.com/Ynoob87)
-- LinkedIn: (https://www.linkedin.com/in/alaner652/)
+- GitHub: https://github.com/Ynoob87
+- LinkedIn: https://www.linkedin.com/in/alaner652/
+
+## 💖 支持專案
+
+如果你覺得這個專案有幫助，可以：
+
+- ⭐ 給專案一個 Star
+- 🐛 回報 Bug 或提出建議
+- 🔀 提交 Pull Request
+- 📢 分享給其他人
