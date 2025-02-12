@@ -111,6 +111,8 @@ src/
 
 本專案採用 MIT 授權條款 - 詳見 [LICENSE](LICENSE) 檔案
 
-## 作者 💻
+## 👤 作者
 
-Small R
+- Email: hhgg12661@gmail.com
+- GitHub: (https://github.com/Ynoob87)
+- LinkedIn: (https://www.linkedin.com/in/alaner652/)
